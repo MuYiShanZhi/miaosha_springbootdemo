@@ -41,10 +41,17 @@ public class SampleController {
 
     @RequestMapping("/redis/get")
     @ResponseBody
-    public Result<Long> RedisId(){
+        public Result<Long> RedisGet(){
         Long v1 = redisService.get("key1",Long.class);
         return Result.Success(v1);
     }
 
+    @RequestMapping("/redis/set")
+    @ResponseBody
+    public Result<String> RedisSet(){
+        boolean b1 = redisService.set("key2","hello.imooc");
+        String str = redisService.get("key",String.class);
+        return Result.Success(str);
+    }
 
 }
