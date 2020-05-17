@@ -1,11 +1,12 @@
 package com.imooc_miaosha.redis;
 
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 @Data
 @Component
-@ConfigurationProperties(prefix = "redis")
+@ConfigurationProperties(prefix = "redis")//可以读到application配置文件中所有以redis打头的配置
 public class RedisConfig {
 //    @Value("${spring.redis.host}")
     private String host;

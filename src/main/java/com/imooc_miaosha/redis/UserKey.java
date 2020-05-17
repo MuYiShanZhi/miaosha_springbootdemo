@@ -2,9 +2,10 @@ package com.imooc_miaosha.redis;
 
 public class UserKey extends BasePrefix{
 
-    private UserKey(int expireSconds, String prefix) {
-        super(expireSconds, prefix);
+    private UserKey(String prefix) {
+        super(prefix);
     }
 
-    public static UserKey()
+    public static UserKey getById = new UserKey("id");
+    public static UserKey getByName = new UserKey("name");
 }

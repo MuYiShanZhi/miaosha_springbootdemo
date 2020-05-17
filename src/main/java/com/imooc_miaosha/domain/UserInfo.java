@@ -1,5 +1,8 @@
 package com.imooc_miaosha.domain;
 
+import lombok.Data;
+
+@Data
 public class UserInfo {
     private Integer id;
 
