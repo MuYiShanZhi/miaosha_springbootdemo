@@ -15,11 +15,17 @@ public class RedisPoolFactory {
     @Bean
     public JedisPool JedisFactory(){
         JedisPoolConfig poolConfig = new JedisPoolConfig();
-        poolConfig.setMaxIdle(redisConfig.getMaxIdle());
-        poolConfig.setMaxTotal(redisConfig.getMaxActive());
-        poolConfig.setMaxWaitMillis(redisConfig.getMaxWait()*1000);//因为配置时是按照秒来配置的
+        poolConfig.setMaxIdle(redisConfig.getPoolMaxIdle());
+        poolConfig.setMaxTotal(redisConfig.getPoolMaxTotal());
+        poolConfig.setMaxWaitMillis(redisConfig.getPoolMaxWait()*1000);//因为配置时是按照秒来配置的
+
+//        poolConfig.setMaxIdle(redisConfig.getMaxIdle());
+//        poolConfig.setMaxActive(redisConfig.getMaxActive());
+//        poolConfig.setMaxWait(redisConfig.getMaxWait()*1000);//因为配置时是按照秒来配置的
+
         JedisPool jp = new JedisPool(poolConfig,redisConfig.getHost(),redisConfig.getPort(),
                 redisConfig.getTimeout()*1000,redisConfig.getPassword(),0);
+
         return jp;
     }
 

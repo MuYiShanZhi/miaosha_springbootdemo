@@ -44,7 +44,7 @@ public class SampleController {
     @ResponseBody
     public Result<UserInfo> RedisGet(){
         UserInfo userInfo = redisService.get(UserKey.getById,""+1,UserInfo.class);
-        return Result.Success(userInfo);
+        return Result.success(userInfo);
     }
 
     @RequestMapping("/redis/set")
@@ -54,7 +54,7 @@ public class SampleController {
         userInfo.setId(1);
         userInfo.setUsername("11111");
         redisService.set(UserKey.getById,""+1,UserInfo.class);
-        return Result.Success(true);
+        return Result.success(true);
     }
 
 }

@@ -1,22 +1,46 @@
 package com.imooc_miaosha.result;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+public class Result<T> {
+    private Integer code;
+    private String msg;
+    private T data;
 
-import java.io.Serializable;
+    public static <T> Result<T> success(T data){
+        return new Result<T>(data);
+    }
 
-@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
-//保证序列化json的时候,如果是null的对象,key也会消失
-public class Result<T> implements Serializable {
-    int code;
-    T data;
+    public static <T> Result<T> error(CodeMsg codeMsg){
+        return new Result<T>(codeMsg);
+    }
 
-    public int getCode() {
+    private Result(CodeMsg codeMsg) {
+        if (codeMsg == null){
+            return;
+        }
+        this.code = codeMsg.getCode();
+        this.msg = codeMsg.getMsg();
+    }
+
+    private Result(T data) {
+        this.code = 0;
+        this.msg = "success";
+        this.data = data;
+    }
+
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(Integer code) {
         this.code = code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     public T getData() {
@@ -25,24 +49,5 @@ public class Result<T> implements Serializable {
 
     public void setData(T data) {
         this.data = data;
-    }
-
-    public Result(int code, T data) {
-        this.code = code;
-        this.data = data;
-    }
-
-    private Result(T data) {
-        this.data = data;
-    }
-
-    @JsonIgnore
-    //使之不在json序列化结果当中
-    public boolean isSuccess() {
-        return this.code == 200;
-    }
-
-    public static <T> Result<T> Success(T data) {
-        return new Result(200,data);
     }
 }
