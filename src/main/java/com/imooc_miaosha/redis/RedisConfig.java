@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 @ConfigurationProperties(prefix = "redis")//可以读到application配置文件中所有以redis打头的配置
-public class RedisConfig {
+public class RedisConfig {//用户频繁查询的东西存在redis中
     private String host;
     private int port;
     private int timeout;

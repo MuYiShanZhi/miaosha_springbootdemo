@@ -15,4 +15,8 @@ public class UserInfoService {
     public UserInfo getId(Integer id){
         return userInfoMapper.selectByPrimaryKey(id);
     }
+
+    public Integer add(UserInfo userInfo){
+        return userInfoMapper.insert(userInfo);
+    }
 }

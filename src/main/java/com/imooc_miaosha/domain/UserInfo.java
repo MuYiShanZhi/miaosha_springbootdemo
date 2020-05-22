@@ -8,6 +8,14 @@ public class UserInfo {
 
     private String username;
 
+    public UserInfo() {
+    }
+
+    public UserInfo(Integer id, String username) {
+        this.id = id;
+        this.username = username;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -23,4 +31,5 @@ public class UserInfo {
     public void setUsername(String username) {
         this.username = username == null ? null : username.trim();
     }
+
 }

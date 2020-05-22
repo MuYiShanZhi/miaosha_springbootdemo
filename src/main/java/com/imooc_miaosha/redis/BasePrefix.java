@@ -1,5 +1,6 @@
 package com.imooc_miaosha.redis;
 
+//为避免redis在多人查询时key被覆盖，加prefix
 public abstract class BasePrefix implements KeyPrefix {
 
     private int expireSconds;

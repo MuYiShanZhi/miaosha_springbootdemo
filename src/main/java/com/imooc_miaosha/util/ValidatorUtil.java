@@ -4,7 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+//这是一个用于判断格式的类
 public class ValidatorUtil {
 
     private static final Pattern mobile_pattern = Pattern.compile("1\\d{10}");  //定义规则：以1开头，后面跟10个数字

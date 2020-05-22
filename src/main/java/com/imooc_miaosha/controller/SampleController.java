@@ -11,9 +11,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import static javafx.scene.input.KeyCode.T;
 
@@ -36,8 +34,17 @@ public class SampleController {
 
     @RequestMapping("/do/get")
     @ResponseBody
-    public UserInfo GetId(@Param("id") Integer id){
-        return userInfoService.getId(id);
+    public Result<UserInfo> GetId(@Param("id") Integer id){
+        UserInfo userInfo =  userInfoService.getId(id);
+        return Result.success(userInfo);
+    }
+
+
+    @PostMapping("/add")
+    @ResponseBody
+    public Result<Integer> addUser(@RequestBody UserInfo userInfo){
+        int result = userInfoService.add(userInfo);
+        return Result.success(result);
     }
 
     @RequestMapping("/redis/get")
