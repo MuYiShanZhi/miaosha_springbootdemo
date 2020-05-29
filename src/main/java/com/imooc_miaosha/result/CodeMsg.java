@@ -9,6 +9,8 @@ public class CodeMsg {
     public static final CodeMsg BIND_ERROR = new CodeMsg(500101, "参数校验异常：%s");
 
     //登录模块
+    public static final CodeMsg MessageCode_ERROR = new CodeMsg(500200, "验证码错误");
+
     public static final CodeMsg PASSWORD_EMPTY = new CodeMsg(500211, "登录密码不能为空");
     public static final CodeMsg MOBILE_EMPTY = new CodeMsg(500212, "手机号不能为空");
     public static final CodeMsg MOBILE_ERROR = new CodeMsg(500213, "手机号格式错误");

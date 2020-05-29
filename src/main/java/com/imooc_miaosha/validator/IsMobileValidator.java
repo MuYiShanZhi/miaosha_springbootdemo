@@ -11,12 +11,12 @@ public class IsMobileValidator implements ConstraintValidator<IsMobile, String> 
 
     private boolean required = false;
 
-    @Override
+
     public void initialize(IsMobile isMobile) {
         required = isMobile.required();
     }
 
-    @Override
+
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
         if (required){
             return ValidatorUtil.isMobile(s);

@@ -18,7 +18,7 @@ public class ValidatorUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(isMobile("15684722381"));    //true
+        System.out.println(isMobile("16812352278"));    //true
         System.out.println(isMobile("1568472238"));     //false
     }
 }

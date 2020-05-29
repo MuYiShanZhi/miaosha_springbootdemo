@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 )
 public @interface IsMobile {
 
-    boolean required() default true;
+    boolean required() default true;//运行在特殊时刻为空。如不传参数
 
     String message() default "手机号码格式错误";  //校验不通过时提示信息
 
