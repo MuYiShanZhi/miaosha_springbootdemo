@@ -61,7 +61,8 @@ public class MiaoshaUserService {
             throw new GlobalException(CodeMsg.MOBILE_NOT_EXIST);
         }
         //生成cookie
-        addCookie(response,user);
+        String token = UUIDUtil.uuid();
+        addCookie(response,token,user);
         return true;
     }
 
@@ -84,7 +85,8 @@ public class MiaoshaUserService {
             throw new GlobalException(CodeMsg.PASSWORD_ERROR);
         }
         //生成cookie
-        addCookie(response,user);
+        String token = UUIDUtil.uuid();
+        addCookie(response,token,user);
         return true;
     }
 
@@ -95,13 +97,13 @@ public class MiaoshaUserService {
         MiaoshaUser miaoshaUser = redisService.get(MiaoshaUserKey.token, token, MiaoshaUser.class);
         //延长有效期
         if(miaoshaUser != null){
-            addCookie(response,miaoshaUser);
+            addCookie(response,token,miaoshaUser);
         }
-        addCookie(response,miaoshaUser);
+        addCookie(response,token,miaoshaUser);
         return miaoshaUser;
     }
-    public void addCookie(HttpServletResponse response, MiaoshaUser user){
-        String token = UUIDUtil.uuid();
+    public void addCookie(HttpServletResponse response, String token ,MiaoshaUser user){
+        redisService.set(MiaoshaUserKey.token,token,user);
         log.info("生成了token");
         redisService.set(MiaoshaUserKey.token, token, user); //将user和token绑定并存入Redis中
         log.info("将user和token绑定并存入Redis中");

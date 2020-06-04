@@ -14,4 +14,19 @@ public class MiaoshaUser {
     private Date lastLoginDate;
     private Integer loginCount;
 
+    @Override
+    public String toString() {
+        return "MiaoshaUser{" +
+                "id=" + id +
+                ", nickname='" + nickname + '\'' +
+                ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
+                ", head='" + head + '\'' +
+                ", registerDate=" + registerDate +
+                ", lastLoginDate=" + lastLoginDate +
+                ", loginCount=" + loginCount +
+                '}';
+    }
+
+
 }

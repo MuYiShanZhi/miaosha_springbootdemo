@@ -54,7 +54,13 @@
 
         <table schema="" tableName="PAY_TRANSACTION_DETAIL"/>
 
-        <table tableName="userInfo" domainObjectName="UserInfo" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="goods" domainObjectName="Goods" enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="miaosha_goods" domainObjectName="MiaoshaGoods" enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="miaosha_user" domainObjectName="MiaoshaUser" enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="order_Info" domainObjectName="OrderInfo" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
         <!-- 有些表的字段需要指定java类型
          <table schema="" tableName="">

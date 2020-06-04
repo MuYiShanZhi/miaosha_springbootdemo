@@ -1,12 +1,9 @@
 package com.imooc_miaosha.controller;
 
 
-import com.imooc_miaosha.domain.MiaoshaUser;
 import com.imooc_miaosha.result.CodeMsg;
 import com.imooc_miaosha.result.Result;
 import com.imooc_miaosha.service.MiaoshaUserService;
-import com.imooc_miaosha.service.UserInfoService;
-import com.imooc_miaosha.util.ValidatorUtil;
 import com.imooc_miaosha.vo.LoginVo;
 import com.imooc_miaosha.vo.PhoneLoginVo;
 import org.slf4j.Logger;
@@ -14,8 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.thymeleaf.util.StringUtils;
-import sun.security.krb5.internal.crypto.RsaMd5CksumType;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
