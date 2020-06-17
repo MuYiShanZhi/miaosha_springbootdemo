@@ -29,5 +29,4 @@ public class Constants {
     @Value("${constants.weCatRedirectUrl}")
     private String weCatRedirectUrl;
 
-    //自行生成set get方法
 }

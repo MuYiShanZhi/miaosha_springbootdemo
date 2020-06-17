@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
@@ -21,6 +22,7 @@
 
 </head>
 <body>
+
     <div class="panel panel-default">
         <div class="panel-heading">秒杀商品列表</div>
         <table class="table" id="goodsList">
@@ -32,6 +34,8 @@
                 <td>库存数量</td>
                 <td>详情</td>
             </tr>
+
+
             <tr th:each="goods, goodsStat : ${goodsList}">
                 <td th:text="${goods.goodsName}"></td>
                 <td>
@@ -41,7 +45,7 @@
                 <td th:text="${goods.miaoshaPrice}"></td>
                 <td th:text="${goods.stockCount}"></td>
                 <td>
-                    <a th:href="'/goods/to_detail/' + ${goods.id}">详情</a>
+                    <a th:href="'/goods_detail.htm?goodsId=' + ${goods.id}">详情</a>
                 </td>
             </tr>
         </table>

@@ -34,8 +34,6 @@ public class MiaoshaUserService {
     @Autowired
     RedisService redisService;
 
-//    @Autowired
-//    MyRedisUtil myRedisUtil;
 
     public boolean Send(String phone, HttpSession session) {
         String messageCode = String.valueOf((int)(Math.random()*100000));
@@ -48,7 +46,35 @@ public class MiaoshaUserService {
 
 
     public MiaoshaUser getById(long id){
-        return miaoshaUserMapper.getById(id);
+        //取缓存
+        MiaoshaUser miaoshaUser =redisService.get(MiaoshaUserKey.getById, ""+id, MiaoshaUser.class);
+        if (miaoshaUser != null){
+            return miaoshaUser;
+        }
+        //取数据库
+        miaoshaUser = miaoshaUserMapper.getById(id);
+        if (miaoshaUser != null){
+            redisService.set(MiaoshaUserKey.getById, ""+id, miaoshaUser);
+        }
+        return miaoshaUser;
+    }
+
+    public boolean updatePassword(String token, long id, String formPass){
+        //取user
+        MiaoshaUser miaoshaUser = getById(id);
+        if (miaoshaUser == null){
+            throw new GlobalException(CodeMsg.MOBILE_NOT_EXIST);
+        }
+        //更新数据库
+        MiaoshaUser toBeUpdate = new MiaoshaUser();
+        toBeUpdate.setId(id);
+        toBeUpdate.setPassword(MD5Util.formPassToDBPass(formPass, miaoshaUser.getSalt()));
+        miaoshaUserMapper.update(toBeUpdate);
+        //处理缓存
+        redisService.delete(MiaoshaUserKey.getById, ""+id);
+        miaoshaUser.setPassword(toBeUpdate.getPassword());
+        redisService.set(MiaoshaUserKey.token, token, miaoshaUser);
+        return true;
     }
 
     public boolean checkCode(HttpServletResponse response,String phone) {

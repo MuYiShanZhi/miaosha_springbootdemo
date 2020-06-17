@@ -3,9 +3,11 @@ package com.imooc_miaosha.vo;
 
 
 import com.imooc_miaosha.domain.Goods;
+import lombok.Data;
 
 import java.util.Date;
 
+@Data
 public class GoodsVo extends Goods {    //既包含普通商品，又包含秒杀商品的一个封装
     private Double miaoshaPrice;
     private Integer stockCount;

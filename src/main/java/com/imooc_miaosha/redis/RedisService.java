@@ -107,6 +107,25 @@ public class RedisService {
         }
     }
 
+
+    /**
+     * 根据键删除
+     * @param prefix
+     * @param key
+     * @return
+     */
+    public Boolean delete(KeyPrefix prefix, String key){
+        Jedis jedis = null;
+        try {
+            jedis = jedisPool.getResource();
+            String realPrefix = prefix.getPrefix() + key;
+            long ret = jedis.del(realPrefix);
+            return ret > 0;
+        }finally {
+            returnToPool(jedis);
+        }
+    }
+
     private <T> String beanToString(T value) {
         if(value == null){
             return null;
