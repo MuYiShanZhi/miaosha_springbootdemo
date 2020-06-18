@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.imooc_miaosha.dao.MiaoshaUserMapper">
+  <resultMap id="BaseResultMap" type="com.imooc_miaosha.domain.MiaoshaUser">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="head" jdbcType="VARCHAR" property="head" />
+    <result column="registerDate" jdbcType="TIMESTAMP" property="registerdate" />
+    <result column="lastLoginDate" jdbcType="TIMESTAMP" property="lastlogindate" />
+    <result column="loginCount" jdbcType="INTEGER" property="logincount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, nickname, password, salt, head, registerDate, lastLoginDate, loginCount
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from miaosha_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from miaosha_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.imooc_miaosha.domain.MiaoshaUser">
+    insert into miaosha_user (id, nickname, password, 
+      salt, head, registerDate, 
+      lastLoginDate, loginCount)
+    values (#{id,jdbcType=BIGINT}, #{nickname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{salt,jdbcType=VARCHAR}, #{head,jdbcType=VARCHAR}, #{registerdate,jdbcType=TIMESTAMP}, 
+      #{lastlogindate,jdbcType=TIMESTAMP}, #{logincount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.imooc_miaosha.domain.MiaoshaUser">
+    insert into miaosha_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="salt != null">
+        salt,
+      </if>
+      <if test="head != null">
+        head,
+      </if>
+      <if test="registerdate != null">
+        registerDate,
+      </if>
+      <if test="lastlogindate != null">
+        lastLoginDate,
+      </if>
+      <if test="logincount != null">
+        loginCount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="head != null">
+        #{head,jdbcType=VARCHAR},
+      </if>
+      <if test="registerdate != null">
+        #{registerdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastlogindate != null">
+        #{lastlogindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logincount != null">
+        #{logincount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.imooc_miaosha.domain.MiaoshaUser">
+    update miaosha_user
+    <set>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="head != null">
+        head = #{head,jdbcType=VARCHAR},
+      </if>
+      <if test="registerdate != null">
+        registerDate = #{registerdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastlogindate != null">
+        lastLoginDate = #{lastlogindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logincount != null">
+        loginCount = #{logincount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.imooc_miaosha.domain.MiaoshaUser">
+    update miaosha_user
+    set nickname = #{nickname,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      head = #{head,jdbcType=VARCHAR},
+      registerDate = #{registerdate,jdbcType=TIMESTAMP},
+      lastLoginDate = #{lastlogindate,jdbcType=TIMESTAMP},
+      loginCount = #{logincount,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

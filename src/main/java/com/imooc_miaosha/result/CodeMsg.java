@@ -6,7 +6,7 @@ public class CodeMsg {
 
     public static final CodeMsg SUCCESS = new CodeMsg(0, "success");
     public static final CodeMsg SERVER_ERROR = new CodeMsg(500100, "服务器异常");
-    public static final CodeMsg BIND_ERROR = new CodeMsg(500101, "参数校验异常：%s");
+   public static final CodeMsg BIND_ERROR = new CodeMsg(500101, "参数校验异常：%s");
 
     //登录模块
     public static final CodeMsg MessageCode_ERROR = new CodeMsg(500200, "验证码错误");
@@ -17,6 +17,8 @@ public class CodeMsg {
     public static final CodeMsg MOBILE_NOT_EXIST = new CodeMsg(500214, "手机号不存在");
     public static final CodeMsg PASSWORD_ERROR = new CodeMsg(500215, "密码错误");
 
+    public static final CodeMsg USER_NOT_EXIST = new CodeMsg(500216, "用户不存在");
+    public static final CodeMsg USER_EXISTED = new CodeMsg(500217, "用户已存在");
     //秒杀模块 5005xx
     public static final CodeMsg MIAO_SHA_OVER = new CodeMsg(500500, "商品已经秒杀完毕");
     public static final CodeMsg REPEATE_MIAOSHA = new CodeMsg(500501, "不能重复秒杀");

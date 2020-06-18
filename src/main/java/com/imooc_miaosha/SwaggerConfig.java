@@ -24,7 +24,7 @@ public class SwaggerConfig {
                 .build();
     }
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("swagger和springBoot整合").description("swagger的API文档")
+        return new ApiInfoBuilder().title("秒杀功能").description("swagger的API文档")
                 .version("1.0").build();
     }
 }

@@ -5,6 +5,7 @@ import com.imooc_miaosha.redis.RedisService;
 import com.imooc_miaosha.service.GoodsService;
 import com.imooc_miaosha.service.MiaoshaUserService;
 import com.imooc_miaosha.vo.GoodsVo;
+import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
+@Api(value = "产品Cotroller",tags = {"产品售卖"})
 @RequestMapping("/goods")
 public class GoodsController {
 
@@ -30,8 +32,11 @@ public class GoodsController {
     @Autowired
     GoodsService goodsService;
 
+    @ApiOperation(value = "展示商品列表")
     @RequestMapping("/to_list")
-    public String list(Model model, MiaoshaUser user) {
+    @ApiResponses(value = { @ApiResponse(code = 1000, message = "成功"), @ApiResponse(code = 1001, message = "失败"),
+            @ApiResponse(code = 1002, message = "缺少参数") })
+    public String list(@ApiParam("Model")Model model, @ApiParam("秒杀用户对象") MiaoshaUser user) {
 //        if(StringUtils.isEmpty(cookieToken)&&StringUtils.isEmpty(paramToken)){
 //            return "login";
 //        }
@@ -46,8 +51,17 @@ public class GoodsController {
         return "goods_list";
     }
 
+    @ApiOperation(value = "秒杀商品详情")
+    @ApiResponses(value = { @ApiResponse(code = 1000, message = "成功"), @ApiResponse(code = 1001, message = "失败"),
+            @ApiResponse(code = 1002, message = "缺少参数") })
+
     @RequestMapping("/to_detail/{goodsId}")
-    public String detail(Model model, MiaoshaUser user,
+    @ApiImplicitParams({ @ApiImplicitParam(name = "goodsId",
+            value = "产品id",
+            dataType = "long",
+            paramType = "path",
+            required = true)})
+    public String detail(Model model, @ApiParam("秒杀用户对象")MiaoshaUser user,
                          @PathVariable("goodsId") long goodsId) {
 
         model.addAttribute("user", user);

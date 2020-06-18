@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.imooc_miaosha.dao.MiaoshaGoodsMapper">
+  <resultMap id="BaseResultMap" type="com.imooc_miaosha.domain.MiaoshaGoods">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="goods_id" jdbcType="BIGINT" property="goodsId" />
+    <result column="miaosha_price" jdbcType="DECIMAL" property="miaoshaPrice" />
+    <result column="stock_count" jdbcType="INTEGER" property="stockCount" />
+    <result column="start_data" jdbcType="TIMESTAMP" property="startData" />
+    <result column="end_data" jdbcType="TIMESTAMP" property="endData" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, goods_id, miaosha_price, stock_count, start_data, end_data
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from miaosha_goods
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from miaosha_goods
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.imooc_miaosha.domain.MiaoshaGoods">
+    insert into miaosha_goods (id, goods_id, miaosha_price, 
+      stock_count, start_data, end_data
+      )
+    values (#{id,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, #{miaoshaPrice,jdbcType=DECIMAL}, 
+      #{stockCount,jdbcType=INTEGER}, #{startData,jdbcType=TIMESTAMP}, #{endData,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.imooc_miaosha.domain.MiaoshaGoods">
+    insert into miaosha_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="miaoshaPrice != null">
+        miaosha_price,
+      </if>
+      <if test="stockCount != null">
+        stock_count,
+      </if>
+      <if test="startData != null">
+        start_data,
+      </if>
+      <if test="endData != null">
+        end_data,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="miaoshaPrice != null">
+        #{miaoshaPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="stockCount != null">
+        #{stockCount,jdbcType=INTEGER},
+      </if>
+      <if test="startData != null">
+        #{startData,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endData != null">
+        #{endData,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.imooc_miaosha.domain.MiaoshaGoods">
+    update miaosha_goods
+    <set>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="miaoshaPrice != null">
+        miaosha_price = #{miaoshaPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="stockCount != null">
+        stock_count = #{stockCount,jdbcType=INTEGER},
+      </if>
+      <if test="startData != null">
+        start_data = #{startData,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endData != null">
+        end_data = #{endData,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.imooc_miaosha.domain.MiaoshaGoods">
+    update miaosha_goods
+    set goods_id = #{goodsId,jdbcType=BIGINT},
+      miaosha_price = #{miaoshaPrice,jdbcType=DECIMAL},
+      stock_count = #{stockCount,jdbcType=INTEGER},
+      start_data = #{startData,jdbcType=TIMESTAMP},
+      end_data = #{endData,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

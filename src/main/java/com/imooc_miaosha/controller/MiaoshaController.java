@@ -8,6 +8,7 @@ import com.imooc_miaosha.service.GoodsService;
 import com.imooc_miaosha.service.MiaoshaService;
 import com.imooc_miaosha.service.OrderService;
 import com.imooc_miaosha.vo.GoodsVo;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@Api(value = "商品秒杀Controller",tags = {"秒杀功能实现"})
 @RequestMapping("/miaosha")
 public class MiaoshaController {
 
@@ -27,8 +29,11 @@ public class MiaoshaController {
     @Autowired
     MiaoshaService miaoshaService;
 
+    @ApiOperation(value = "秒杀的实现")
     @RequestMapping("/do_miaosha")
-    public String doMiaosha(Model model, MiaoshaUser user, @RequestParam("goodsId") long goodsId){
+    @ApiResponses(value = { @ApiResponse(code = 1000, message = "成功"), @ApiResponse(code = 1001, message = "失败"),
+            @ApiResponse(code = 1002, message = "缺少参数") })
+    public String doMiaosha(Model model,@ApiParam("秒杀用户对象") MiaoshaUser user, @ApiParam("商品id")@RequestParam("goodsId") long goodsId){
         model.addAttribute("user", user);
         if (user == null){
             return "login";
