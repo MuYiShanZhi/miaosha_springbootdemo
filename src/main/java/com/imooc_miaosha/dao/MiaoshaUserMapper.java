@@ -13,5 +13,4 @@ public interface MiaoshaUserMapper {
 
     @Update("update miaosha_user set password = #{password} where id = #{id}")
     public void update(MiaoshaUser toBeUpdate);
-
 }
